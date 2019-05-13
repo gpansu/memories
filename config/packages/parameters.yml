@@ -1,0 +1,12 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: papigatoxyowner.mysql.db
+    database_port: 3306
+    database_name: papigatoxyowner
+    database_user: papigatoxyowner
+    database_password: Test1test
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    secret: 332d15c39e9934213a3c98648a4e2d5a7c548dd4

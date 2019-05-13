@@ -1,24 +1,44 @@
+# To get started with security, check out the documentation:
+# https://symfony.com/doc/current/security.html
 security:
-    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
-    providers:
-        in_memory: { memory: ~ }
-    firewalls:
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-        main:
-            anonymous: true
 
-            # activate different ways to authenticate
+  encoders:
+    App\Entity\Account:
+      algorithm: bcrypt
+  # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+  providers:
+    our_db_provider:
+      entity:
+        class: App:Account
+        property: username
 
-            # http_basic: true
-            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+  firewalls:
+    # disables authentication for assets and the profiler, adapt it according to your needs
+    dev:
+      pattern: ^/(_(profiler|wdt)|css|images|js)/
+      security: false
 
-            # form_login: true
-            # https://symfony.com/doc/current/security/form_login_setup.html
+    main:
+      pattern: ^/
 
-    # Easy way to control access for large sections of your site
-    # Note: Only the *first* access control that matches will be used
-    access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+      # but the firewall does not require login on every page
+      # denying access is done in access_control or in your controllers
+      anonymous: true
+      form_login:
+        provider: our_db_provider
+        login_path: login
+        check_path: login
+        always_use_default_target_path: true
+        default_target_path: /home
+        csrf_token_generator: security.csrf.token_manager
+      logout:
+        path:   logout
+        target: login
+
+
+
+  access_control:
+  - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+  - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+  - { path: ^/admin, roles: ROLE_ADMIN, requires_channel: https }
+  - { path: ^/, role: [ROLE_ADMIN,ROLE_USER], requires_channel: https }

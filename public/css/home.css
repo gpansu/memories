@@ -1,0 +1,36 @@
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 5px 10px;
+    color: white;
+}
+
+.logout {
+    cursor: pointer;
+}
+
+.navigation {
+    border: 1px solid #17a2b8;
+}
+.navigation a {
+    color: white;
+}
+
+.navigation .nav-item {
+    border-right: 1px solid white;
+}
+
+.navigation .nav-item .nav-link.active {
+    background: white !important;
+    color: #17a2b8 !important;
+}
+
+.navigation .nav-item:first-child {
+    border-left: 1px solid white;
+}
+
+.welcome {
+    font-size: 2em;
+}

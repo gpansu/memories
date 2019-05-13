@@ -1,0 +1,46 @@
+{# app/Resources/views/security/login.html.twig #}
+{% extends "base.html.twig" %}
+{% block stylesheets %}
+    <link href="{{ asset('css/register.css') }}" rel="stylesheet"/>
+{% endblock %}
+{% block body %}
+{% if error %}
+    <div class="w-100 pl-3 pr-3 mt-3">
+        <div class="alert alert-danger text-center">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    </div>
+{% endif %}
+
+    {#
+        If you want to control the URL the user
+        is redirected to on success (more details below)
+        <input type="hidden" name="_target_path" value="/account" />
+    #}
+
+    <div class="registration card card-info w-75">
+        <div class="card-heading">
+            <h3 class="card-title">Login</h3>
+        </div>
+        <div class="card-body">
+
+            <form action="{{ path('login') }}" method="post">
+                <div class="form-group">
+                    <label for="username" class="required">Email</label>
+                    <input type="email" id="username" name="_username" required="required" value="{{ last_username }}" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="required">Password</label>
+                    <input type="password" id="password" name="_password" required="required" class="form-control">
+                </div>
+
+                <input type="hidden" name="_csrf_token"
+                       value="{{ csrf_token('authenticate') }}">
+            <div class="text-center mt-2">
+                <button class="btn btn-outline-info mr-2 font-weight-bold" type="submit">Login</button> or
+
+                <button class="btn btn-outline-info ml-2" type="button" onclick="location.href='/register'">Register</button>
+            </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

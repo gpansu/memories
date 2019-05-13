@@ -1,0 +1,62 @@
+{# app/Resources/views/home.html.twig #}
+{% extends "base.html.twig" %}
+{% block stylesheets %}
+    <link href="{{ asset('css/home.css') }}" rel="stylesheet"/>
+{% endblock %}
+{% block header %}
+    <div class="header bg-info">
+        <div class="current-user">{{ currentUser.getUsername() }}</div>
+        <div class="logout" onclick="location.href='/logout'">
+            Logout
+            <i class="fas fa-sign-out-alt ml-2"></i>
+        </div>
+    </div>
+{% endblock %}
+{% block body %}
+    <div class="mt-3 pl-5 bg-info navigation">
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link {{app.session.get('currentPage') == 'home'?'active':''}}" href="/home">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{app.session.get('currentPage') == 'testimonies'?'active':''}}" href="/testimonies">Testimonies</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{app.session.get('currentPage') == 'documents'?'active':''}}" href="/documents">Pictures & Documents</a>
+            </li>
+            {% if is_granted('ROLE_ADMIN') %}
+            <li class="nav-item">
+                <a class="nav-link {{app.session.get('currentPage') == 'users'?'active':''}}" href="/admin/users">Users</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+    {% if app.request.hasPreviousSession %}
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="w-100 p-2">
+                    <div class="alert text-center alert-{{ label == 'error' ? 'danger':label }} flash-{{ label }}">
+                        {{ message }}
+                    </div>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+    {% block content %}
+        <div class="p-3">
+            <div class="welcome">Welcome!</div>
+            {%  if(currentUser.getTestimony() == null)  %}
+            <div>
+                <div>Here you will be able to share your memories, anecdotes and stories of Pierre!</div>
+                <a href="/testimonies">Click here to share</a>
+            </div>
+            {% endif %}
+            {% if(currentUser.getTestimony() != null)  %}
+            <div>
+                <div>Thank you for sharing your memories with us!</div>
+                <a href="/testimonies">Click here to update or modify your testimony</a>
+            </div>
+        </div>
+        {% endif %}
+    {% endblock %}
+{% endblock %}

@@ -1,0 +1,28 @@
+
+.description {
+    margin: 10px;
+    font-style: italic;
+}
+.form-container {
+    display:none;
+}
+
+.doc-list {
+    margin: 0 10px;
+}
+.document {
+    height: 75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background-size: auto;
+}
+
+.icon {
+    color: #AAAAAA;
+}
+.new-doc {
+    cursor:pointer;
+
+}
