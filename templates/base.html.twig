@@ -13,16 +13,24 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         {% block scripts %}{% endblock %}
+        <script>
+            function switchLanguage(lang){
+                var path = location.pathname;
+                location.href = '/'+lang+path.substr(3, path.length);
+            }
+        </script>
     </head>
     <body>
     {% block header %}{% endblock %}
         <div class="title-container">
             <div class="img-container"><img src="{{ asset('images/pop.jpg') }}" height="150"></div>
             <div class="app-title">
-                <div class="main-title">Pierre turns 60</div>
-                <div class="sub-title">Share your memories, pictures and videos (without telling him!)</div>
+                <div class="main-title">{{ 'Pierre turns 60' | trans }}</div>
+                <div class="sub-title">{{ 'Share your memories, pictures and videos (without telling him!)' | trans }}</div>
             </div>
-            <div class="img-container"></div>
+            <div class="icon-container">
+                <img src="{{ asset('images/uk.png') }}" width=30 onClick="switchLanguage('en')" /><img src="{{ asset('images/fr.png') }}" width=30 onClick="switchLanguage('fr')" class="ml-4"/>
+            </div>
         </div>
             {% block body %}{% endblock %}
             {% block javascripts %}{% endblock %}

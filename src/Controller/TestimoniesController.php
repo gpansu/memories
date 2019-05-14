@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class TestimoniesController extends Controller
 {
     /**
-     * @Route("/testimonies", name="testimonies")
+     * @Route("/{_locale}/testimonies", name="testimonies")
      * @param Request $request
      * @param LoggerInterface $logger
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response

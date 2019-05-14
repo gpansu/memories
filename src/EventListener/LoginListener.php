@@ -8,19 +8,20 @@
 
 namespace App\EventListener;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Event\AuthenticationEvent;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 
 class LoginListener {
 
     protected $entityManager;
 
-    public function __construct(EntityManager $entityManager){
+    public function __construct(EntityManagerInterface $entityManager){
         $this->entityManager = $entityManager;
     }
 
-    public function onSuccessfulLogin(AuthenticationEvent $event)
+    public function onSecurityInteractiveLogin(InteractiveLoginEvent $event)
     {
         $user = $event->getAuthenticationToken()->getUser();
         if($user instanceof UserInterface){

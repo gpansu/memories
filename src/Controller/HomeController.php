@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends Controller
 {
     /**
-     * @Route("/home", name="home")
+     * @Route("/{_locale}/home", name="home")
      */
     public function homeAction()
     {

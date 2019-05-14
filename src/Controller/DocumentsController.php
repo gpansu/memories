@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class DocumentsController extends Controller
 {
     /**
-     * @Route("/documents", name="documents")
+     * @Route("/{_locale}/documents", name="documents")
      * @param Request $request
      * @param FileUploadService $fileUploadService
      * @param LoggerInterface $logger

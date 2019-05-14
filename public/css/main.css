@@ -16,6 +16,15 @@ body {
     height: 150px;
     line-height: 150px;
 }
+
+.icon-container {
+    width: 270px;
+    flex-grow: 0;
+    height: 30px;
+    line-height: 30px;
+    align-self: flex-start;
+}
+
 .app-title {
     text-align: center;
     padding: 20px 50px;
