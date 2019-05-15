@@ -1,12 +1,12 @@
 <?php
-
-namespace AppBundle\Entity;
+// src/Entity/Testimony.php
+namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Table(name="document")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\DocumentRepository")
+ * @ORM\Entity(repositoryClass="Repository\DocumentRepository")
  */
 class Document
 {

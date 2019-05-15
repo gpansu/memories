@@ -25,6 +25,9 @@ body {
     align-self: flex-start;
 }
 
+.icon-container img {
+    cursor: pointer;
+}
 .app-title {
     text-align: center;
     padding: 20px 50px;
@@ -48,6 +51,11 @@ body {
     padding: 5px 10px 10px 20px;
     border-color: #17a2b8;
     border-bottom: 1px solid;
+}
+
+a, a:visited {
+    color : #17a2b8;
+    text-decoration: none;
 }
 
 .card-heading .card-title {

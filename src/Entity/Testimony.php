@@ -1,5 +1,5 @@
 <?php
-// src/AppBundle/Entity/Testimony.php
+// src/Entity/Testimony.php
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;

@@ -41,7 +41,7 @@
                 <button class="btn btn-outline-info ml-2" type="button" onclick="location.href='./register'">{{ 'Register' | trans }}</button>
             </div>
             </form>
-            <div><a href="/{{ app.request.locale }}/resetPassword">I forgot my password</a></div>
+            <div class="text-center mt-3"><a class="pg" href="/{{ app.request.locale }}/resetPassword">{{  'I forgot my password' | trans }}</a></div>
         </div>
     </div>
 {% endblock %}

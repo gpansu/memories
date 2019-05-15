@@ -6,7 +6,7 @@
 {% block header %}
     <div class="header bg-info">
         <div class="current-user">{{ currentUser.getUsername() }}</div>
-        <div class="logout" onclick="location.href='/logout'">
+        <div class="logout" onclick="location.href='/{{ app.request.locale }}/logout'">
             {{  'Logout' | trans }}
             <i class="fas fa-sign-out-alt ml-2"></i>
         </div>

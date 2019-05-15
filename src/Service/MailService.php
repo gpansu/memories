@@ -27,7 +27,7 @@ class MailService
         $this->mailer_from = $mailer_from;
         $this->mailer_from_no_reply = $mailer_from_no_reply;
         // Create the Transport
-        $this->transport = (new Swift_SmtpTransport($mailer_host, $mailer_port))
+        $this->transport = (new Swift_SmtpTransport($mailer_host, $mailer_port, 'ssl'))
             ->setUsername($mailer_user)
             ->setPassword($mailer_password);
     }

@@ -4,13 +4,15 @@ Pierre turns 60 : Pierre a 60 ans
 Share your memories, pictures and videos (without telling him!) : Partagez vos souvenirs, photos et vidéos (sans lui dire !)
 Register : S'enregistrer
 Password : Mot de passe
+Verify Password: Vérification du mot de passe
+New Password: Nouveau mot de passe
+Verify New Password: Vérification du nouveau mot de passe
 or : ou
 Log in : Se connecter
 Logout : Se déconnecter
 #register
 Registration : Enregistrement
 Back to login : Retour
-Verify Password : Vérification du mot de passe
 #home
 Home : Accueil
 Testimonies : Témoignages
@@ -28,5 +30,10 @@ Thank you for sharing your memories with us! : Merci d'avoir partagé vos souven
 Users : Utilisateurs
 
 #pwd
+I forgot my password : J'ai oublié mon mot de passe
 Reset password: Réinitialiser le mot de passe
 Password reset: Réinitialisation du mot de passe
+A mail with a new temporary password was sent : Un mail contenant un mot de passe temporaire vous a été envoyé
+Change my password : Changer mon mot de passe
+Your current password is temporary. Please select a new one: Votre mot de passe actuel est temporaire. Veuillez en choisir un nouveau
+Password changed : Mot de passe mis à jour
