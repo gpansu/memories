@@ -26,8 +26,11 @@
             </li>
             {% if is_granted('ROLE_ADMIN') %}
             <li class="nav-item">
-                <a class="nav-link {{app.session.get('currentPage') == 'users'?'active':''}}" href="/admin/users">{{  'Users' | trans }}</a>
+                <a class="nav-link {{app.session.get('currentPage') == 'admin/users'?'active':''}}" href="/admin/users">{{  'Users' | trans }}</a>
             </li>
+                <li class="nav-item">
+                    <a class="nav-link {{app.session.get('currentPage') == 'admin/docs'?'active':''}}" href="/admin/docs">{{  'Docs' | trans }}</a>
+                </li>
             {% endif %}
         </ul>
     </div>

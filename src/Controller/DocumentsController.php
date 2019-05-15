@@ -97,4 +97,22 @@ class DocumentsController extends Controller
 
         return $response;
     }
+
+    /**
+     * @Route("/{_locale}/admin/docs", name="adminDocs")
+     * @param Request $request
+     * @param LoggerInterface $logger
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
+    public function adminAction(Request $request, LoggerInterface $logger)
+    {
+        $this->get('session')->set('currentPage', 'admin/docs');
+        $user = $this->getUser();
+        $docs = $this->getDoctrine()
+            ->getRepository(Document::class)
+            ->findAll();
+        return $this->render('docs.html.twig', array(
+            'currentUser' => $user,
+            'docs' => $docs));
+    }
 }
