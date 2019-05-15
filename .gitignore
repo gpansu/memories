@@ -7,7 +7,7 @@
 /var/
 /vendor/
 /.idea/
-/**/*parameters.yaml
+/**/parameters.yml
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###
