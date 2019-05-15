@@ -15,7 +15,7 @@ class FileUploadService
 {
     private $targetDirectory;
 
-    public function __construct($targetDirectory)
+    public function __construct(String $targetDirectory)
     {
         $this->targetDirectory = $targetDirectory;
     }
@@ -32,17 +32,21 @@ class FileUploadService
         $newDocument->setUploadDate(new \DateTime('now'));
 
         try {
-            $file->move($this->getTargetDirectory(), $fileName);
+            $file->move($this->getTargetDirectory($user), $fileName);
         } catch (FileException $e) {
             $logger->error($e);
         }
-        $newDocument->setPath($this->getTargetDirectory()."/".$fileName);
+        $newDocument->setPath(realpath($this->getTargetDirectory($user)."/".$fileName));
 
         return $newDocument;
     }
 
-    public function getTargetDirectory()
+    public function getTargetDirectory(Account $user)
     {
-        return $this->targetDirectory;
+        $path = $this->targetDirectory.'/'.$user->getId();
+        if (!file_exists($path)) {
+            mkdir($path, 0777, true);
+        }
+        return $path;
     }
 }

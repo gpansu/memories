@@ -1,12 +1,12 @@
 <?php
-// src/Entity/Testimony.php
+// src/Entity/Document.php
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Table(name="document")
- * @ORM\Entity(repositoryClass="Repository\DocumentRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\DocumentRepository")
  */
 class Document
 {
@@ -38,7 +38,7 @@ class Document
     private $uploadDate;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Account")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Account")
      */
     private $account;
 

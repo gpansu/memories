@@ -18,8 +18,8 @@
     </script>
 {% endblock %}
 {% block content %}
-    <div class="description">Please share your best pictures/videos of Pierre, or any other file! (only Brigitte, Pierre's wife, will see
-        them and gather them in a book)
+    <div class="description">
+        {{ 'Please share your best pictures/videos of Pierre, or any other file! (only Brigitte, Pierre\'s wife, will see them and gather them in a book)' | trans }}
     </div>
         <div class="row doc-list">
             {% for document in documents %}
@@ -34,7 +34,7 @@
                 <div class="document w-100 fiv-viv fiv-icon-blank d-flex">
                     <div class=" icon fas fa-plus"></div>
                 </div>
-                <div>Upload new file</div>
+                <div>{{ 'Upload new file' |trans }}</div>
                 <div>.</div>
             </div>
     <div class="form-container">

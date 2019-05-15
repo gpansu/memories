@@ -54,11 +54,12 @@ class DocumentsController extends Controller
     }
 
     /**
-     * @Route("/documents/{docId}", name="document")
+     * @Route("{_locale}/documents/{docId}", name="document")
+     * @param LoggerInterface $logger
      * @param $docId
      * @return BinaryFileResponse
      */
-    public function openDoc($docId)
+    public function openDoc(LoggerInterface $logger, $docId)
     {
         $user = $this->getUser();
         $document = $this->getDoctrine()
@@ -69,6 +70,7 @@ class DocumentsController extends Controller
             return null;
         }
         $path = $document->getPath();
+        $logger->error('path: '.realpath($path));
         $response = new BinaryFileResponse($path);
 
         // To generate a file download, you need the mimetype of the file

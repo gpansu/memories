@@ -43,3 +43,6 @@ services:
       $mailer_password: '%mailer_password%'
       $mailer_from: '%mailer_from%'
       $mailer_from_no_reply: '%mailer_from_no_reply%'
+  App\Service\FileUploadService:
+    arguments:
+      $targetDirectory: ../files
