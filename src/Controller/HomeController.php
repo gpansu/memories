@@ -17,9 +17,6 @@ class HomeController extends Controller
     {
         $this->get('session')->set('currentPage', 'home');
         $user = $this->getUser();
-        $logger->error('change 2 '.$this->get('security.token_storage')->getToken());
-
-        print($user->getUserName().' '.$user->getIsTemporary());
         if($user->getIsTemporary()){
             return $this->redirect('/changePassword');
         } else {

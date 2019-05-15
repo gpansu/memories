@@ -39,7 +39,11 @@ class DocumentsController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $file = $form->get('file')->getData();
             $newDocument = $fileUploadService->upload($file, $user, $logger);
-            $this->addFlash('info', 'File ' . $file->getClientOriginalName() . " uploaded");
+            if($request->getLocale() == 'fr') {
+                $this->addFlash('info', 'Fichier ' . $file->getClientOriginalName() . " envoyé");
+            } else {
+                $this->addFlash('info', 'File ' . $file->getClientOriginalName() . " uploaded");
+            }
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($newDocument);

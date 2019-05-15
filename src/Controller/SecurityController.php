@@ -113,8 +113,6 @@ class SecurityController extends AbstractController
         // 1) build the form
         $account = $this->getUser();
         $form = $this->createForm(ChangePasswordForm::class);
-
-        $logger->error('change 1 '.$this->get('security.token_storage')->getToken());
         // 2) handle the submit (will only happen on POST)
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
@@ -130,7 +128,6 @@ class SecurityController extends AbstractController
                     $token = new UsernamePasswordToken($account, $account->getPassword(), 'main', $account->getRoles());
                     $this->get('security.token_storage')->setToken($token);
                     $this->get('session')->set('_security_main', serialize($token));
-                    $logger->error('change 2 '.$this->get('security.token_storage')->getToken());
                     $this->addFlash(
                         'success',
                         'Password changed'
