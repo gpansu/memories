@@ -30,6 +30,11 @@ class Account implements UserInterface, \Serializable
     private $password;
 
     /**
+     * @ORM\Column(name="is_temporary", type="boolean")
+     */
+    private $isTemporary;
+
+    /**
      * @Assert\NotBlank
      * @Assert\Length(max=4096)
      */
@@ -61,6 +66,7 @@ class Account implements UserInterface, \Serializable
     {
         $this->isActive = true;
         $this->role = 'ROLE_USER';
+        $this->isTemporary = false;
     }
 
     public function getId()
@@ -201,6 +207,23 @@ class Account implements UserInterface, \Serializable
     {
         $this->lastConnectionDate = new \DateTime("now");
     }
+
+    /**
+     * @return bool
+     */
+    public function getIsTemporary(): bool
+    {
+        return $this->isTemporary;
+    }
+
+    /**
+     * @param boolean $isTemporary
+     */
+    public function setIsTemporary(bool $isTemporary): void
+    {
+        $this->isTemporary = $isTemporary;
+    }
+
 
 
 }

@@ -38,8 +38,9 @@ security:
 
 
   access_control:
-  - { path: ^/(en|fr)/login$, role: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
-  - { path: ^/(en|fr)/register$, role: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https  }
-  - { path: ^/(en|fr)/admin$, roles: ROLE_ADMIN, requires_channel: https  }
-  - { path: ^/(en|fr)/(.)*$, role: [ROLE_ADMIN,ROLE_USER], requires_channel: https  }
-  - { path: ^/, role: [ROLE_ADMIN,ROLE_USER], requires_channel: https  }
+  - { path: ^/(en|fr)/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+  - { path: ^/(en|fr)/register$, role: IS_AUTHENTICATED_ANONYMOUSLY  }
+  - { path: ^/(en|fr)/resetPassword$, role: IS_AUTHENTICATED_ANONYMOUSLY  }
+  - { path: ^/(en|fr)/admin$, roles: ROLE_ADMIN  }
+  - { path: ^/(en|fr)/(.)*$, role: [ROLE_ADMIN,ROLE_USER] }
+  - { path: ^/, role: [ROLE_ADMIN,ROLE_USER]  }

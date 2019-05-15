@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Account;
 use App\Form\RegistrationForm;
+use App\Service\SecurityService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,9 +18,10 @@ class RegistrationController extends Controller
      * @Route("/{_locale}/register", name="user_registration")
      * @param Request $request
      * @param UserPasswordEncoderInterface $passwordEncoder
+     * @param SecurityService $securityService
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function registerAction(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    public function registerAction(Request $request, SecurityService $securityService)
     {
         // 1) build the form
         $user = new Account();
@@ -29,7 +31,7 @@ class RegistrationController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
-            if ($this->captchaverify($request->get('g-recaptcha-response'))) {
+            if ($securityService->captchaverify($request->get('g-recaptcha-response'))) {
 
                 $account = $this->getDoctrine()
                     ->getRepository(Account::class)
@@ -42,7 +44,7 @@ class RegistrationController extends Controller
                 } else {
 
                     // 3) Encode the password (you could also do this via Doctrine listener)
-                    $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
+                    $password = $securityService->encode($user, $user->getPlainPassword());
                     $user->setPassword($password);
 
                     // 4) save the User!
@@ -64,16 +66,6 @@ class RegistrationController extends Controller
             'registration/register.html.twig',
             array('form' => $form->createView())
         );
-    }
-
-    # get success response from recaptcha and return it to controller
-    function captchaverify($recaptcha)
-    {
-        $secret = "6Lc7NIkUAAAAABCpmRo5n-XGNoALG3bEG39x8o_i";
-        $response = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secret . '&response=' . $recaptcha);
-        $data = json_decode($response);
-
-        return $data->success;
     }
 
     function autologin($request, $user)

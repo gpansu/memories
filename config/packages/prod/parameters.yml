@@ -1,0 +1,16 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: papigatoxyowner.mysql.db
+    database_port: 3306
+    database_name: papigatoxyowner
+    database_user: papigatoxyowner
+    database_password: Bri1Pie2
+    mailer_transport: smtp
+    mailer_host: SSL0.OVH.NET
+    mailer_port: 587
+    mailer_user: no-reply@papigato.eu
+    mailer_password: gi1na2flo3
+    mailer_from: gpansu@papigato.eu
+    mailer_from_no_reply: no-reply@papigato.eu
+    secret: 332d15c39e9934213a3c98648a4e2d5a7c548dd4
+    captcha_secret : 6Lc7NIkUAAAAABCpmRo5n-XGNoALG3bEG39x8o_i

@@ -5,13 +5,13 @@ namespace App\Controller;
 use App\Entity\Account;
 use App\Entity\Testimony;
 use Psr\Log\LoggerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
 
-class TestimoniesController extends Controller
+class TestimoniesController extends AbstractController
 {
     /**
      * @Route("/{_locale}/testimonies", name="testimonies")
