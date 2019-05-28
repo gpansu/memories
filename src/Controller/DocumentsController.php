@@ -115,4 +115,45 @@ class DocumentsController extends Controller
             'currentUser' => $user,
             'docs' => $docs));
     }
+	
+    /**
+     * @Route("{_locale}/admin/docs/{docId}", name="documentAsAdmin")
+     * @param LoggerInterface $logger
+     * @param $docId
+     * @return BinaryFileResponse
+     */
+    public function openDocAsAdmin(LoggerInterface $logger, $docId)
+    {
+        $user = $this->getUser();
+        $document = $this->getDoctrine()
+            ->getRepository(Document::class)
+            ->find($docId);
+        if($document == null){
+            $this->addFlash('error', 'Requested document was not found ');
+            return null;
+        }
+        $path = $document->getPath();
+        $logger->error('path: '.realpath($path));
+        $response = new BinaryFileResponse($path);
+
+        // To generate a file download, you need the mimetype of the file
+        $mimeTypeGuesser = new FileinfoMimeTypeGuesser();
+
+        // Set the mimetype with the guesser or manually
+        if($mimeTypeGuesser->isSupported()){
+            // Guess the mimetype of the file according to the extension of the file
+            $response->headers->set('Content-Type', $mimeTypeGuesser->guess($path));
+        }else{
+            // Set the mimetype of the file manually, in this case for a text file is text/plain
+            $response->headers->set('Content-Type', 'text/plain');
+        }
+
+        // Set content disposition inline of the file
+        $response->setContentDisposition(
+            ResponseHeaderBag::DISPOSITION_ATTACHMENT,
+            $document->getOriginalName()
+        );
+
+        return $response;
+    }
 }
