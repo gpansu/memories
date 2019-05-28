@@ -1,0 +1,27 @@
+{% extends 'home.html.twig' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/home.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('css/users.css') }}" rel="stylesheet"/>
+{% endblock %}
+{% block content %}
+    <table class="table table-sm table-striped">
+        <thead>
+            <tr>
+                <th>File name</th>
+                <th>Upload date</th>
+                <th>User email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for doc in docs %}
+                <tr onclick="location.href='/admin/docs/{{ doc.id }}'">
+                    <td style="cursor:pointer">{{ doc.originalName }}</td>
+                    <td>{{ doc.uploadDate | date("d-m-Y g:ia") }}</td>
+                    <td>{{ doc.account.username}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+

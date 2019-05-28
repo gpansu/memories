@@ -1,0 +1,31 @@
+{% extends 'home.html.twig' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/home.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('css/users.css') }}" rel="stylesheet"/>
+{% endblock %}
+{% block content %}
+    <table class="table table-sm table-striped">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Last connection date</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Text</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.lastConnectionDate | date("d-m-Y g:ia") }}</td>
+                    <td>{{ user.testimony ? user.testimony.name : ''}}</td>
+                    <td>{{ user.testimony ? user.testimony.address : ''}}</td>
+                    <td>{{ user.testimony ? user.testimony.testimony : ''}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
